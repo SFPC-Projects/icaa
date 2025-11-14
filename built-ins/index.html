@@ -29,7 +29,7 @@
     const options = {
         website: 'Websites',
         games: 'Games',
-        "ai/ml": 'ai/ml',
+        "Machine Learning": 'Machine Learning',
         'interactive-installation': 'Interactive Installation',
         'data-visualization': 'Data Visualization',
         narratives: 'Narratives'
@@ -88,12 +88,12 @@
             'A story… with an outlined set of steps you can and can’t take': true,
             "Access point: Based on a phone, computer, tabletop, relies only on bodies (rock paper scissors)": false
         },
-        "ai/ml": {
-            'code ( the llm, neural network, models)': false,
+        "Machine Learning": {
+            'code ( the llm, neural network, models)': true,
             'Training Dataset': false,
             'Output: images, video, text': false,
-            'How you display the output(website, paper, post)': false,
-            'Visual guide for text or visual prompts': false,
+            'How you display the output(website, paper, post)': true,
+            'Visual guide for text or visual prompts': true,
             'Energy/resource requirements': false,
             "visual slickness": false,
             "uncanniness": false
@@ -194,15 +194,16 @@ background: linear-gradient(90deg,rgba(99, 99, 99, 1) 0%, rgba(255, 255, 255, 1)
         /* animation-timing-function: ease-in-out; */
                 animation-timing-function: ease;
         animation-iteration-count: infinite; /* or a specific number */
-        border: dashed rgba(0, 0, 0, 0.6) 2px;
-                border-radius: 15px;
-                padding: 5px;
+        border: dashed rgba(0, 0, 0, 0.6) 1px;
+                border-radius: 5px;
+                padding: 20px;
                 
 
     }
 
     #droppy{
-        background-color: yellow;
+        background-color: rgba(255, 255, 255, 0.451);
+        font-weight: bolder;
     }
 
     .unchangeable {
@@ -225,7 +226,7 @@ background: linear-gradient(90deg,rgba(99, 99, 99, 1) 0%, rgba(255, 255, 255, 1)
         transform: scale(.75); /* Starting state */
       }
       50% {
-        transform: scale(1.2); /* Intermediate state */
+        transform: scale(1.25); /* Intermediate state */
       }
       100% {
         transform: scale(.75); /* Ending state, returning to original size */
