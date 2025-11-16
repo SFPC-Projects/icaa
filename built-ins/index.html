@@ -4,7 +4,7 @@
         <title>Built-ins / Defaults</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Elms+Sans&family=Kanit&family=Nunito&display=swap" rel="stylesheet">
     </head>
     <body>
         <div x-data="{ selectedVal: 'website' }">
@@ -16,12 +16,23 @@
             <div x-data="{ features: features }">
                 <ul>
                     <template x-for="(changeable, feature) in features[selectedVal]">
-                        <li @click="showTooltip()">
-                            <span contenteditable="true"  :class="changeable ? 'changeable' : 'unchangeable'" x-text="feature"></span>
+                        <li>
+                            <template x-if="changeable && comments[feature]">
+                                <button contenteditable="true" @click="showExtra" class="changeable" x-text="feature"></button>
+                            </template>
+                            <template x-if="changeable && !comments[feature]">
+                                <span contenteditable="true" class="changeable" x-text="feature"></span>
+                            </template>
+                            <template x-if="!changeable">
+                                <span contenteditable="true" class="unchangeable" x-text="feature"></span>
+                            </template> 
                         </li>
                     </template>
                 </ul>
         </div>
+        <section @click="toggleHeight" class="follow-up">
+           The information on this site is from an in class exercise where partipants were first asked to list features of different forms of computational mediums: their features, visual forms, characteristics and qualities. Then they were asked to categorize these features into ones that were changeable by the creator/artist and ones that were unchangeable, or built-in to the medium. 
+        </section>
     </body>
 </html>
 
@@ -29,7 +40,7 @@
     const options = {
         website: 'Websites',
         games: 'Games',
-        "Machine Learning": 'Machine Learning',
+        "ai-machine-learning": 'Machine Learning/AI',
         'interactive-installation': 'Interactive Installation',
         'data-visualization': 'Data Visualization',
         narratives: 'Narratives'
@@ -37,7 +48,7 @@
 
     const features = {
         general: {
-            "Source of technology (of course, all tracing back to military-industrial but still) - open source, community-based, arts-oriented, industrial, commercial, licensed": true,
+            "Source of technology": true,
             "Longevity/particularity of technology, relationship to obsolescence, importance of archivability": true,
             "Hardware components (the materials that compose them)": true,
             "Online vs Offline vs local area network": true,
@@ -46,11 +57,11 @@
         website: {
             'Spatial metaphors (index, posts, contact)': true,
             'Domains, .us/.in': false,
-            'Discoverability ': false,
+            'Discoverability ': true,
             'Host (e.g. github, heroku, amazon web services)': true,
             'Coding capability (Wordpress.org vs .com for instance)': true,
             'How long till interaction changes something on the screen like is it a fast response, speed of interaction': true,
-            "friction of interaction: how it facilitates or breaks 'ultimate smooth flow' (re: Feed Time reading), smooth? laggy?": true,
+            "friction of interaction": true,
             'Types of interaction: scroll, tap, hold, swipe, long press': true,
             'Font': true,
             'CMS or content management system': true,
@@ -88,7 +99,7 @@
             'A story… with an outlined set of steps you can and can’t take': true,
             "Access point: Based on a phone, computer, tabletop, relies only on bodies (rock paper scissors)": false
         },
-        "Machine Learning": {
+        "ai-machine-learning": {
             'code ( the llm, neural network, models)': true,
             'Training Dataset': false,
             'Output: images, video, text': false,
@@ -146,23 +157,45 @@
     }
 
     const comments = {
-        "Discoverability ":"special quote from class",
-        isMap: true 
+        "Discoverability ":"On the note of discoverability, how are we prompted to encounter a website? Does it come up in a related google search, or does a friend share a link on socials, or is it in a gallery, etc?",
+        "Spatial metaphors (index, posts, contact)": "How does the space feel? How does construction of the space influence user's behavior? Is there a discrete location you go to, or is it part of a continuous state of connectivity (with other sites, with the network at large...?",
+        "Domains, .us/.in": "A Korean designer spoke about domains having to be English and how that affects non-English speakers. <a href=\"https://youtu.be/5CmOS_m8ug8?si=uwAQrT7oV8OzPI7C\"/>",
+        "friction of interaction": "How it facilitates or breaks 'ultimate smooth flow' (re: <a href=\"https://soulellis.com/writing/feedtime/index.html\">Feed Time reading</a>). Is it smooth? laggy?",
+        "hardware components (the materials that compose them)": "How much of the construction of the work is exposed, how much is purposefully hidden? Do the seams show?",
+        "source of technology": "Of course, all tracing back to military-industrial but still) - open source, community-based, arts-oriented, industrial, commercial, licensed",
+        "relationship to reality outside the screen: time, weather, energy use": "How much does it ask us to forget where we are, what we did before, what we have to do after? Ex. to use VR you literally have to put on a headset that doesn’t allow you to see anything else, or in a video game when you have to make lots of decisions you are asked to be very aware of your current moment INSIDE the game more than your current moment outside the game",
+        "interactivity level (e.g. passive observation vs active participation)": "'Participation is optional. Consent is crucial.'"
     }
 
-function showTooltip(event) {
-    const feature = event.target
-        tooltip:hover
-    
-}
+    function showExtra(event) {
+        const feature = event.target;
+        // get comment
+        const commentText = comments[feature.textContent];
+        const followUpSection = document.querySelector('.follow-up');
+        // clear previous content
+        followUpSection.innerHTML = ''; 
+        if (commentText) {
+            const p = document.createElement('p');
+            p.innerHTML = commentText;
+            followUpSection.appendChild(p);
+            followUpSection.style.height = '30%';
+        }
+    }
+
+    function toggleHeight() {
+        const followUpSection = document.querySelector('.follow-up');
+        if (followUpSection.style.height === '30%') {
+            followUpSection.style.height = '5%';
+        } else {
+            followUpSection.style.height = '30%';
+        }
+    }
 </script>
 
 <style>
     body {
         font-family: 'Nunito', sans-serif;
         padding: 2rem;
-        background: #636363;
-background: linear-gradient(90deg,rgba(99, 99, 99, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(99, 99, 99, 1) 100%);
     }
 
     select {
@@ -182,6 +215,16 @@ background: linear-gradient(90deg,rgba(99, 99, 99, 1) 0%, rgba(255, 255, 255, 1)
         margin: 1.0rem;
         display: inline-block;
         padding: 0.5rem;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
     }
 
     .changeable {
@@ -210,15 +253,23 @@ background: linear-gradient(90deg,rgba(99, 99, 99, 1) 0%, rgba(255, 255, 255, 1)
         opacity: 0.30;
         display: block;
         font-weight: bolder;
-
         cursor: not-allowed;
-        border: double black 4px;
-          outline: 0px solid transparent;
         padding: 20px;
         color: black;
-        .no-drop {cursor: no-drop;}
+    }
 
+    .no-drop {cursor: no-drop;}
 
+    .follow-up {
+        position: fixed;
+        bottom: 0;
+        background: white;
+        border: 1px dashed gray;
+        padding: 1rem;
+        right: 0;
+        width: 25%;
+        height: 5%;
+        transition: height 0.3s ease;
     }
 
     @keyframes changeAnim {
