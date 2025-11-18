@@ -1,10 +1,10 @@
 # Old Media
 
-## Cinema
+## Interactive Installations / Real Time Art
 - Requires something of the body, cinema requires a fixed gaze, interactive installations some kind of body movement
 - Relies on light
-- Finality of authorship
-- Control over pace
+- Audience/viewer is allowed agency. Agency becomes an operative aspect of the work, explicitly in the form of interface and response - a noticeable change or effect on the work from your engagement with it
+
 
 ## Analog/Traditional 2D Art (pencil, ink, marker, etc)
 - Technical elements (composition, value, color, shape, line, light)
