@@ -71,3 +71,11 @@
 
 ## Pop-up ads
 - annoyance
+
+## ​​Assemblage/ Collage
+- Reuse of found “objects”, Recontextualization
+
+## Zine
+- Tangibility / tactility
+- Constrained to physical materials and infrastructures of the web server farms or wi-fi connection
+- Physical exchange of media
