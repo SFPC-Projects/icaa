@@ -21,9 +21,7 @@
                 </p>
             </section>
             <section class="recording">
-                <video controls>
-                    <source type="video/mov" src="https://drive.google.com/uc?export=download&id=12xHRQzcwRyA2vPkoJj2Ic3MI9eBIK4Hu"></source>
-                </video>
+                <video controls autoplay loop muted src="co-annotation-short.mov"></video>
             </section>
         </main>
     </body>
@@ -47,21 +45,22 @@
     }
 
     .text {
-        width: 40vw;
+        max-width: 80%;
         padding: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .recording {
         padding: 2rem;
+        display: flex;
     }
 
     .recording video {
-        margin: 0;
-        padding: 0;
-        object-fit: cover;
+        margin: 0 auto;
         width: 80%;
     }
 
@@ -74,5 +73,11 @@
         justify-content: space-between;
         padding: 1rem 2rem;
         width: inherit;
+    }
+
+    @media screen and (max-width: 1024px) {
+        main {
+            flex-direction: column;
+        }
     }
 </style>
